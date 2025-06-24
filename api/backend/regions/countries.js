@@ -7,7 +7,6 @@ import { callApi } from '../../../utils/callApi.js';
  */
 export function getCountries() {
   // Construct the URL for the API call
-  console.log('NODE ENV CLIENT_SECRET:', __ENV.CLIENT_SECRET);
   const url = `${config.backendUrl}/api/v1.0/Countries`;
 
   // Make the API call and return the response

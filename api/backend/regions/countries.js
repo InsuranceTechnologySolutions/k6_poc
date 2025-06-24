@@ -12,3 +12,11 @@ export function getCountries() {
   // Make the API call and return the response
   return callApi(url);
 }
+
+export function getCountriesFail() {
+  // Construct the URL for the API call
+  const url = `${config.backendUrl}/api/v1.0/Countrie`;
+
+  // Make the API call and return the response
+  return callApi(url);
+}

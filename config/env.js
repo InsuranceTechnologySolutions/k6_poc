@@ -2,7 +2,7 @@ const environments = {
   test: {
     auth: {
       clientId: 'etuity-core-frontend-web', // Client ID for authentication
-      clientSecret: process.env.CLIENT_SECRET || '', // Use env var
+      clientSecret: __ENV.CLIENT_SECRET || '', // Use env var
       tokenUrl: 'https://test-login.etuity.no/ade8c63f/connect/token', // URL to obtain the token
       scope: 'regions' // Scope of the access
     },

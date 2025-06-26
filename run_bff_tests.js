@@ -50,7 +50,7 @@ console.log(`\n🧪 Using test profile: "${profile}"`);
       .join('; ');
 
     // Define the directory containing K6 test files
-    const testDir = join(__dirname, 'tests/bff');
+    const testDir = join(__dirname, 'tests');
     
     // Read all test files ending with .test.js in the specified directory
     const testFiles = readdirSync(testDir).filter(f => f.endsWith('.test.js'));
@@ -61,7 +61,7 @@ console.log(`\n🧪 Using test profile: "${profile}"`);
       console.log(`\n🚀 Running: ${file}`);
       try {
         // Run the K6 test using execSync, passing the cookie header as an environment variable
-        execSync(`k6 run "${fullPath}"`, {
+        execSync(`k6 run "${fullPath}" ENVIRONMENT=test --env TEST=bff`, {
           stdio: 'inherit',
           env: {
             ...process.env,

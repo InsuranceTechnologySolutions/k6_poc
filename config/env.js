@@ -1,16 +1,35 @@
+// config/env.js
+import { getModuleBaseUrl } from '../utils/envHelpers.js';
+
 const environments = {
   test: {
-    auth: {
-      clientId: 'etuity-core-frontend-web', // Client ID for authentication
-      clientSecret: __ENV.CLIENT_SECRET || '', // Use env var
-      tokenUrl: 'https://test-login.etuity.no/ade8c63f/connect/token', // URL to obtain the token
-      scope: 'regions' // Scope of the access
+    bff: {
+      baseUrl: 'https://test-norclub.etuity.no',
     },
-    baseUrl: 'https://test-norclub.etuity.no', // Base URL for the environment
-    backendUrl: 'https://regions-integration-api.test.internal.etuity.no' // URL for backend API 
-  }
+    backend: {
+      regionsBaseUrl: 'https://regions-integration-api.test.internal.etuity.no',
+      accountingBaseUrl: 'https://accounting-api.test.internal.etuity.no',
+      counterpartyBaseUrl: 'https://counterparty-api.test.internal.etuity.no',
+    },
+    auth: {
+      clientId: 'etuity-core-frontend-web',
+      clientSecret: __ENV.CLIENT_SECRET || '',
+      tokenUrl: 'https://test-login.etuity.no/ade8c63f/connect/token',
+      scope: 'regions accounting:read counterparty:read',
+    },
+  },
 };
 
-const selectedEnv = __ENV.ENVIRONMENT || 'test'; // Default to 'test' if not set
+const selectedEnv = __ENV.ENVIRONMENT || 'test';
+const testType = __ENV.TEST || 'bff';
 
-export const config = environments[selectedEnv]; // Export the configuration for the selected environment
+const env = environments[selectedEnv];
+
+if (!env || !env[testType]) {
+  throw new Error(`Invalid ENVIRONMENT ('${selectedEnv}') or TEST ('${testType}') value.`);
+}
+
+export const config = env;
+export const ACCOUNTING_BASE_URL = getModuleBaseUrl(env, testType, 'accounting');
+export const COUNTERPARTY_BASE_URL = getModuleBaseUrl(env, testType, 'counterparty');
+export const REGIONS_BASE_URL = getModuleBaseUrl(env, testType, 'regions');

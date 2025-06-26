@@ -1,7 +1,7 @@
 import { check } from 'k6';
-import { getCountriesFail } from '../../api/backend/regions/countries.js';
-import { getTestOptions } from '../../utils/getTestOptions.js';
-import { handleSummary } from '../../utils/summary.js';
+import { getCountriesFail } from '../api/counterparty.js';
+import { getTestOptions } from '../utils/getTestOptions.js';
+import { handleSummary } from '../utils/summary.js';
 
 
 export const options = getTestOptions();

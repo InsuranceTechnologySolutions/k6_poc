@@ -10,7 +10,7 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const testDir = join(__dirname, 'tests/backend');
+const testDir = join(__dirname, 'tests');
 
 const testFiles = readdirSync(testDir).filter(f => f.endsWith('.test.js'));
 
@@ -21,7 +21,7 @@ for (const file of testFiles) {
   const fullPath = join(testDir, file);
   console.log(`\n🚀 Running ${file}`);
   try {
-    execSync(`k6 run "${fullPath}"`, {
+    execSync(`k6 run "${fullPath}" --env ENVIRONMENT=test --env TEST=backend`, {
       stdio: 'inherit',
       env: {
         ...process.env,

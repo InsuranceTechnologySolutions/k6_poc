@@ -1,4 +1,4 @@
-const BASE_USERS = 50; // Base number of users
+const BASE_USERS = 1; // Base number of users
 const BASE_DURATION_SECONDS = 5; // Base duration in seconds
 const STAGE_10_PERCENT = BASE_DURATION_SECONDS * 0.1; // 10% of the base duration
 

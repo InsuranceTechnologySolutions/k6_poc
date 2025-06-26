@@ -7,8 +7,11 @@
 import { getPremium } from '../../api/bff/accounting.js';
 import { callAndCheck } from '../../utils/checkApi.js';
 import { getTestOptions } from '../../utils/getTestOptions.js';
+import { handleSummary } from '../../utils/summary.js';
 
 export const options = getTestOptions();
+
+export { handleSummary };
 
 export default function () {
   callAndCheck(() => getPremium('client-funds'), 200); 

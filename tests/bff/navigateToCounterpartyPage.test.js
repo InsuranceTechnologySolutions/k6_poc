@@ -8,11 +8,21 @@
 import { getOrganizations, getCountries } from '../../api/bff/counterparty.js';
 import { callAndCheck } from '../../utils/checkApi.js';
 import { getTestOptions } from '../../utils/getTestOptions.js';
+import { handleSummary } from '../../utils/summary.js';
 
 export const options = getTestOptions();
+
+export { handleSummary };
 
 export default function () {
   callAndCheck(getCountries, 200);
   callAndCheck(() => getOrganizations(false), 200); 
   callAndCheck(() => getOrganizations(true), 200);
+}
+
+export function handleSummary(data) {
+  return {
+    "result.html": htmlReport(data, { title: "K6 Load Test Summary" }),
+    stdout: textSummary(data, { indent: " ", enableColors: true }),
+  };
 }

@@ -1,8 +1,11 @@
 import { check } from 'k6';
 import { getCountries } from '../../api/backend/regions/countries.js';
 import { getTestOptions } from '../../utils/getTestOptions.js';
+import { handleSummary } from '../../utils/summary.js';
 
 export const options = getTestOptions();
+
+export { handleSummary };
 
 export default function () {
   const res = getCountries();

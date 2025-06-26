@@ -61,7 +61,7 @@ console.log(`\n🧪 Using test profile: "${profile}"`);
       console.log(`\n🚀 Running: ${file}`);
       try {
         // Run the K6 test using execSync, passing the cookie header as an environment variable
-        execSync(`k6 run "${fullPath}" ENVIRONMENT=test --env TEST=bff`, {
+        execSync(`k6 run "${fullPath}" --env ENVIRONMENT=test --env TEST=bff`, {
           stdio: 'inherit',
           env: {
             ...process.env,

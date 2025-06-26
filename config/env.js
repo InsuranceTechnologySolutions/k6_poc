@@ -30,6 +30,6 @@ if (!env || !env[testType]) {
 }
 
 export const config = env;
-export const ACCOUNTING_BASE_URL = getModuleBaseUrl(env, testType, 'accounting');
-export const COUNTERPARTY_BASE_URL = getModuleBaseUrl(env, testType, 'counterparty');
-export const REGIONS_BASE_URL = getModuleBaseUrl(env, testType, 'regions');
+export const ACCOUNTING_BASE_URL = getModuleBaseUrl(env, testType, 'accounting', 'accounting');
+export const COUNTERPARTY_BASE_URL = getModuleBaseUrl(env, testType, 'counterparty', 'counterparty');
+export const REGIONS_BASE_URL = getModuleBaseUrl(env, testType, 'regions', 'counterparty');
